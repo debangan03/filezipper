@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>File Encipter</title>
+  </head>
+  <body class="bg-slate-900">
+    <section class="navbar">
+      <header class="text-gray-600 body-font">
+        <div
+          class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+        >
+          <a
+            class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+              ></path>
+            </svg>
+            <span class="ml-3 text-xl text-violet-500">ZiP Solutions</span>
+          </a>
+        </div>
+      </header>
+    </section>
+    <section class="main">
+      <section class="text-gray-600 body-font">
+        <div
+          class="container mx-auto flex px-5 py-16 items-center justify-center flex-col"
+        >
+          <img
+            class="lg:w-2/6 mix-blend-difference md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
+            alt="hero"
+            src="https://blog.internxt.com/content/images/size/w2000/2022/11/Blog---What-is-a-Zip---2.png"
+          />
+          <div class="text-center lg:w-2/3 w-full">
+            <h1
+              class="title-font sm:text-4xl text-3xl mb-4 font-medium capitalize text-gray-100"
+            >
+              Upload a file to encript or decript
+            </h1>
+            <div>
+              <input
+                type="file"
+                name="file"
+                id="f"
+                class="p-3 rounded mx-auto bg-slate-950 border-3 focus focus:outline mb-5 focus:outline-blue-500 border-white text-gray-100"
+              />
+              <button onclick="func()">Upload</button>
+            </div>
+
+            <div class="flex justify-center">
+              <button
+                id="b1"
+                class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+              >
+                Encript
+              </button>
+              <button
+                id="b2"
+                class="ml-4 inline-flex text-gray-700 bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-200 rounded text-lg"
+              >
+                Decript
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <div></div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
