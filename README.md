@@ -1,6 +1,9 @@
 ﻿# filezipper
+ ##
 step 1 . clone git repository
+##
 step 2 . give command npm i
+##
 step 3 . give command npm run dev
 
 ##
