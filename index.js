@@ -77,8 +77,8 @@ function compressFile(inputFile, outputFile) {
   fs.writeFileSync(outputFile, encodedText, "utf8");
 }
 
-function decompressFile(ipfile,inputFile, outputFile) {
-    readit(ipfile);
+function decompressFile(ipfile, inputFile, outputFile) {
+  readit(ipfile);
   const encodedText = fs.readFileSync(inputFile, "utf8");
   let current = root;
   const decodedText = [];
@@ -100,10 +100,7 @@ function decompressFile(ipfile,inputFile, outputFile) {
   fs.writeFileSync(outputFile, decodedTextString, "utf8");
 }
 
-
 //finish
-
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -117,34 +114,56 @@ const storage = multer.diskStorage({
     cb(null, `input.txt`);
   },
 });
+const storage1 = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, `compress.bin`);
+  },
+});
 
 const upload = multer({ storage: storage });
-
+const upload1 = multer({ storage: storage1 });
 
 app.get("/", (req, res) => {
   res.status(200).render("Mainpage");
 });
 app.get("/compress", (req, res) => {
-    res.status(200).render("compress");
-  });
-  app.get("/dcompress", (req, res) => {
-    res.status(200).render("decompress");
-  });
-// j
-app.post("/cupload", upload.single("input"), (req, res) => {
-// console.log(req.file);
-compressFile('./uploads/input.txt',"./uploads/compress.txt");
-res.redirect('/')
+  res.status(200).render("compress");
 });
-app.post("/dupload", upload.single("input1"), (req, res) => {
+app.get("/dcompress", (req, res) => {
+  res.status(200).render("decompress");
+});
+
+app.get('/downloadfilec', (req, res) => {
+  const filePath = path.join(__dirname,"uploads/compress.txt"); // Replace with the actual file path
+  res.download(filePath);
+});
+app.get('/downloadfiled', (req, res) => {
+  const filePath = path.join(__dirname,"uploads/decompress.txt"); // Replace with the actual file path
+  res.download(filePath);
+});
+
+
+app.post("/cupload", upload.single("input"), (req, res) => {
   // console.log(req.file);
-  decompressFile('./uploads/input.txt','./uploads/compress.txt',"./uploads/decompress.txt");
-  res.redirect('/')
-  });
+  compressFile("./uploads/input.txt", "./uploads/compress.txt");
+  res.redirect("/downloadfilec");
+});
+app.post("/dupload", upload1.single("input1"), (req, res) => {
+  // console.log(req.file);
+  decompressFile(
+    "./uploads/input.txt",
+    "./uploads/compress.bin",
+    "./uploads/decompress.txt"
+  );
+  res.redirect("/downloadfiled");
+});
 app.get("/download", (req, res) => {
-  // console.log(req.file);
-  res.render("downloas")
-  });
+  // console.log());
+  res.render("download");
+});
 
 app.listen(5000, () => {
   console.log("listening at 5000");
