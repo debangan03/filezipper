@@ -1,1 +1,36 @@
-debangan bhattacharyya
+<!DOCTYPE html>
+<html lang="en">
+<!-- //header -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ZiPx | De-Compress</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<!-- //body -->
+<body class="bg-slate-900">
+    <!-- <div class="flex justify-center my-40">
+        <form action="/dupload" method="POST" enctype="multipart/form-data">
+        <input name="input1" type="file">
+        <button type="submit">Upload</button>
+    </form>
+    </div> -->
+    <div class="header sticky top-0 w-screen mb-4 h-10 p-4">
+        <a href="/"><p class="text-center text-3xl font-bold text-violet-500">ZiPx</p></a>
+      </div>
+    <div class="flex justify-center items-center mt-44 ">
+        <form class="bg-slate-950 p-10"  action="/dupload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="input1" class="text-gray-100  file:py-2 file:px-4
+            file:rounded-md file:border-0
+            file:text-sm file:font-semibold
+            file:bg-violet-500 file:text-white
+            hover:file:bg-violet-600  ">
+
+            <button class="text-gray-100 bg-violet-500 hover:bg-violet-600 px-4 py-[7px] rounded-lg  " type="submit">De-Compress & Download</button>
+
+        </form>
+    </div>
+    
+</body>
+</html>

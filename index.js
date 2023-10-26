@@ -3,6 +3,7 @@ const path = require("path");
 const multer = require("multer");
 const fs = require("fs");
 const app = express();
+var favicon = require('serve-favicon')
 
 //huffman
 
@@ -58,14 +59,6 @@ function readit(inputFile) {
 }
 
 function compressFile(inputFile, outputFile) {
-  // const text = fs.readFileSync(inputFile, 'utf8');
-  // const frequencyMap = {};
-
-  // for (const char of text) {
-  //     frequencyMap[char] = (frequencyMap[char] || 0) + 1;
-  // }
-
-  // root = buildHuffmanTree(frequencyMap);
   readit(inputFile);
   const huffmanCodes = {};
   buildHuffmanCodes(root, "", huffmanCodes);
@@ -103,6 +96,9 @@ function decompressFile(ipfile, inputFile, outputFile) {
 //finish
 
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname,"public")))
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set("views", "./view");
@@ -122,6 +118,7 @@ const storage1 = multer.diskStorage({
     cb(null, `compress.bin`);
   },
 });
+app.use(express.static(path.join(__dirname, 'view')))
 
 const upload = multer({ storage: storage });
 const upload1 = multer({ storage: storage1 });
@@ -147,12 +144,11 @@ app.get('/downloadfiled', (req, res) => {
 
 
 app.post("/cupload", upload.single("input"), (req, res) => {
-  // console.log(req.file);
   compressFile("./uploads/input.txt", "./uploads/compress.txt");
   res.redirect("/downloadfilec");
 });
 app.post("/dupload", upload1.single("input1"), (req, res) => {
-  // console.log(req.file);
+
   decompressFile(
     "./uploads/input.txt",
     "./uploads/compress.bin",
@@ -161,10 +157,10 @@ app.post("/dupload", upload1.single("input1"), (req, res) => {
   res.redirect("/downloadfiled");
 });
 app.get("/download", (req, res) => {
-  // console.log());
+  // console.log();
   res.render("download");
 });
 
 app.listen(5000, () => {
-  console.log("listening at 5000");
+  console.log("Listening at post 5000\nvisit: http://localhost:5000");
 });
