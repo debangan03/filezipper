@@ -140,6 +140,7 @@ app.get('/downloadfilec', (req, res) => {
 app.get('/downloadfiled', (req, res) => {
   const filePath = path.join(__dirname,"uploads/decompress.txt"); // Replace with the actual file path
   res.download(filePath);
+  // res.redirect("/")
 });
 
 
@@ -162,5 +163,5 @@ app.get("/download", (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("Listening at post 5000\nvisit: http://localhost:5000");
+  console.log("server is running at port no 5000\nvisit: http://localhost:5000");
 });
