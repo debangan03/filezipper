@@ -126,6 +126,12 @@ const upload1 = multer({ storage: storage1 });
 app.get("/", (req, res) => {
   res.status(200).render("Mainpage");
 });
+app.get("/about", (req, res) => {
+  res.status(200).render("about");
+});
+app.get("/manual", (req, res) => {
+  res.status(200).render("manual");
+});
 app.get("/compress", (req, res) => {
   res.status(200).render("compress");
 });
