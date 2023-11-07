@@ -168,7 +168,7 @@ const upload1 = multer({ storage: storage1 }); //multer storage for de-compressi
 
 //home page route
 app.get("/", (req, res) => {
-  res.status(200).render("Mainpage");
+  res.status(200).render("Home");
 });
 
 //about page route
